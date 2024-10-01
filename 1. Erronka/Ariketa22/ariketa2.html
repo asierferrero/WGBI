@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="eu">
+
+<head>
+    <link rel="stylesheet" href="ariketa2.css">
+</head>
+<script src="ariketa2.js"></script>
+
+<body>
+    <h1>DAW Klasea</h1>
+    <h2>Formularioak eta JavaScript</h2>
+
+    <div class="container">
+        <div class="form-container">
+            <form id="myForm">
+                <label>Zuzentzeko era</label>
+                <label><input type="radio" name="zuzendu" value="Jauna" checked> Jauna</label>
+                <label><input type="radio" name="zuzendu" value="Andere"> Anderea</label><br><br>
+
+                <label for="izena">Izena</label>
+                <input type="text" id="izena" name="izena"><br><br>
+
+                <label for="abizena">Abizena</label>
+                <input type="text" id="abizena" name="abizena"><br><br>
+
+                <label for="helbidea">Helbidea</label>
+                <input type="text" id="helbidea" name="helbidea"><br><br>
+
+                <label for="hiria">Hiria:</label>
+                <select id="hiria" name="hiria">
+                    <option value="Aukeratu" selected>Aukeratu</option>
+                    <option value="Bilbo">Bilbo</option>
+                    <option value="Donostia">Donostia</option>
+                    <option value="Gasteiz">Gasteiz</option>
+                </select><br><br>
+
+                <label>Gustokoena</label>
+                <label><input type="radio" name="gustokoa" value="Liburuak" checked> Liburuak</label>
+                <label><input type="radio" name="gustokoa" value="Pelikulak"> Pelikulak</label><br><br>
+
+                <button type="button" onclick="displayData()">Bidali</button>
+                <button type="button" onclick="clearData()">Ezeztatu</button>
+            </form>
+        </div>
+
+        <div class="image-container">
+            <img id="personImage" src="caraHombre.jpg" alt="Jauna">
+            <br><br>
+            <div id="displayData">
+                <h3>Sartu dituzun datuak:</h3>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
