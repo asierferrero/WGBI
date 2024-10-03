@@ -5,27 +5,27 @@ const images = [
     'img/saludo4.jpg'
 ];
 
-let imageIndex = 0;
-const maxImages = images.length;
 const container = document.getElementById('images-container');
 const message = document.getElementById('message');
-const button = document.getElementById('show-image-btn');
+const button = document.getElementById('button');
+kont = 0;
 
 button.addEventListener('click', () => {
-    if (imageIndex < maxImages) {
-        const img = document.createElement('img');
-        img.src = images[imageIndex];
-        img.alt = `Imagen ${imageIndex + 1}`;
-        container.appendChild(img);
-        imageIndex++;
-    } else {
+    if (kont == 4) {
         message.textContent = "Ezin dira irudi gehiago gehitu";
+    } else {
+        const img = document.createElement('img');
+        img.src = images[kont];
+        container.appendChild(img);
+        kont++;
     }
 });
 
 container.addEventListener('dblclick', (e) => {
-    if (e.target.tagName === 'IMG') {
+    if (e.target.tagName === 'img') {
         e.target.remove();
+        e.target.push()
         message.textContent = '';
+        kont--;
     }
 });
