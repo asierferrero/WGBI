@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" media="screen" />
+    <script src="./jquery-3.5.1.min.js"></script>
+</head>
+<style>
+    .cookpad {
+        display: flex;
+        justify-content: center;
+    }
+
+    .text {
+        text-align: center;
+        margin-top: 100px;
+    }
+
+    .box {
+        border: 1px solid orange;
+        margin-left: 400px;
+        margin-right: 400px;
+    }
+
+    button {
+        background-color: orange;
+        border: 1px solid black;
+        margin: 10px;
+    }
+</style>
+
+<body>
+    <header>
+        <img src="goia.png" style="width: 100%" />
+    </header>
+    <div class="cookpad" id="img">
+        <img src="cookpad.png" />
+    </div>
+    <div class="text">
+        <div>
+            <h1 style="color: orange">Bidaiatu munduan zehar sukaldatzen</h1>
+            <h2 style="color: darkolivegreen">
+                Italiako sukaldaritza pizza baino askoz gehiago da! Ikusi zer pasatzen
+                ari diren munduan zehar...
+            </h2>
+        </div>
+        <div>
+            <h1 style="color: orange; margin-top: 100px">
+                Zein herrialdeko errezetak ikusi nahi dituzu?
+            </h1>
+        </div>
+    </div>
+    <div class="box">
+        <select id="herrialde" style="margin: 10px">
+            <option selected="selected">Aukeratu</option>
+            <option>Italia</option>
+            <option>Mejico</option>
+            <option>India</option>
+        </select><br />
+        <button id="erakutsi">Errezetak erakutsi</button>
+        <button id="berria">Errezeta berria</button><br />
+        <form id="form" style="margin: 10px" class="needs-validation" novalidate>
+            <label for="inputIzena">Izena</label>
+            <input type="text" class="form-control" id="inputIzena" required />
+            <!--             <div class="valid-feedback">Looks good!</div> --><br /><br />
+            <label for="inputAzalpena">Azalpena</label>
+            <input type="text" class="form-control" id="inputAzalpena" required /><br /><br />
+            <label for="inputIrudia">Irudia</label>
+            <input type="text" class="form-control" id="inputIrudia" required /><br /><br />
+            <button class="btn btn-primary" type="submit">Baieztatu</button>
+        </form>
+        <div id="irudiak"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

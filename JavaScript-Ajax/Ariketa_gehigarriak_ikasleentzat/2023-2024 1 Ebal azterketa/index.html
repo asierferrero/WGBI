@@ -1,0 +1,89 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>gastronomic</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <link rel="stylesheet" type="text/css" href="css+js/bootstrap.min.css" media="screen"/>    
+    <style type="text/css">
+        body {
+            /*margin-left: 30px;*/
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        h4 {
+            margin: 0;
+        }
+    .estiloForm {
+            background-color: burlywood;
+            border: solid 2px black;
+            margin:auto;
+            /*margin-left: 10px;*/
+            /*width: 300px;*/
+            width: 800px;
+            padding: 10px;
+        }
+       .estiloForm label {
+            display: block;
+            float: left;
+            text-align: right;
+            margin-bottom: 35px;
+            padding-right: 20px;
+        }
+       .botoia {
+           background-color: #c69500;
+       }
+       .irudia {
+           margin: 10px;
+       }
+       #erosiForm {
+           padding: 10px;
+       }
+    </style>
+</head>
+<body>
+    <div class="container">
+    
+        <img src="Irudiak/goia.png">
+        <h3>Aukeratu erosi nahi duzun sushi mota:</h3>
+        <div class="estiloForm" id="estiloForm">
+            <table>
+                <tr>
+                    <td>
+                        <label>Bidalketa mota aukeratu</label>
+                        <select id="mota" name="mota">
+                            <option value="">Aukeratu</option>
+                            <option value="Egunean">Egun berean</option>
+                            <option value="Bestea">Beste egun batean</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <button id="erakutsi" class="botoia">Sushi Erakutsi</button>
+                        <button id='erosi' class='botoia'>Erosi</button>
+                        <div id="irudiak"></div>
+                        <div id="erosiForm">
+                            <form class="form-inline">
+                                <div class="form-group mx-sm-3">
+                                    <label for="inputUser" class="sr-only">Erabiltzaile</label>
+                                    <input type="password" class="form-control" id="inputUser" placeholder="Erabiltzaile">
+                                </div>
+                                <div class="form-group mx-sm-3">
+                                    <label for="inputPass" class="sr-only">Pasahitza</label>
+                                    <input type="password" class="form-control" id="inputPass" placeholder="Pasahitza">
+                                </div>
+                                <button type="submit" class="btn btn-primary">Baieztatu</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="css+js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="scripta.js"></script>
+</body>
+</html>

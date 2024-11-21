@@ -1,0 +1,36 @@
+<div>
+    <div>
+        Izena: {{langilea.izena}}
+    </div>
+    <div>
+        Abizena: {{langilea.abizena}}
+    </div>
+    <div>
+        Generoa: {{langilea.generoa}}
+    </div>
+
+    <div>
+        <img [src]="langilea.irudia">
+        <img src="{{langilea.irudia}}">
+
+    </div>
+    <input [(ngModel)]="langilea.izena">
+    <input [(ngModel)]="langilea.abizena">
+    <h2>{{ getTitle() }} </h2>
+    <ul>
+        <li *ngFor="let langilea of langileak">
+            Izena: {{langilea.izena}}
+            Abizena: {{langilea.abizena}}
+            Generoa: {{langilea.generoa}}
+            Soldata: {{langilea.soldata}}
+            <td>{{langilea.likes}}</td>
+            <td><input type="button" value="Like" (click)="gehituLikes(langilea)" /> </td>
+            <td>
+                <span class="badge"
+                    [ngClass]="langilea.soldata>= 1999 ? 'badge-info' : (langilea.soldata == 1000 ? 'badge-danger' : 'badgewarning')">
+                    {{langilea.soldata}}
+                </span>
+            </td>
+        </li>
+    </ul>
+</div>
