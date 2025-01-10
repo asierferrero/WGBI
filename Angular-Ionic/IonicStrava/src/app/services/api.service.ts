@@ -11,6 +11,7 @@ import { Transaction } from '../classes/transaction';
 import { NetworkService } from './network.service';
 import { SyncService } from './sync.service';
 import { TransactionService } from './transaction.service';
+import { Atleta } from '../classes/atleta';
 
 @Injectable({
   providedIn: 'root'
@@ -126,10 +127,23 @@ export class ApiService {
     return this.klubakList.asObservable();
   }
 
+  fetchAtletak(): Observable<Atleta[]> {
+    return this.atletakList.asObservable();
+  }
+
   //getKluba() lortutako datuak bueltatzen ditu, tab1-jarduerak orrian erabiltzen da
   fetchKluba(id: any): Observable<Kluba> {
     const kluba = this.klubakList.value.find(kluba => kluba.id === id);
     return of(kluba || {} as Kluba);
+  }
+
+  // Add - Lerro berria gehitu eta klub guztiak irakurri
+  async addKluba(kluba: Kluba) {
+    let data = [kluba.name, kluba.cover_photo_small, kluba.sport_type, kluba.privatea, kluba.member_count, kluba.description, kluba.club_type];
+    alert(data);
+    const res = await this.storage.executeSql('INSERT INTO klubas (name, cover_photo_small, sport_type, private, member_count, description, club_type) VALUES (?, ?, ?, ?, ?, ?, ?)', data);
+
+    this.getKlubak();
   }
 
   // Add - Lerro berria gehitu, transakzio taulara pasatu eta sarea badugu sinkronizatzen saiatu.

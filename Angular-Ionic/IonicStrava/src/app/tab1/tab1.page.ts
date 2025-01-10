@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { KlubaService } from '../services/kluba.service';
 import { ApiService } from '../services/api.service';
 import { Kluba } from '../classes/kluba';
 
