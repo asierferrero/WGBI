@@ -1,0 +1,28 @@
+{
+  "results": [
+    {
+      "id": "1",
+      "izena": "Relax",
+      "mota": "klasikoa",
+      "aukeratua": false
+    },
+    {
+      "id": "2",
+      "izena": "Pop",
+      "mota": "Relax",
+      "aukeratua": false
+    },
+    {
+      "id": "3",
+      "izena": "Rap",
+      "mota": "Relax",
+      "aukeratua": false
+    },
+    {
+      "id": "4",
+      "izena": "Dance",
+      "mota": "Relax",
+      "aukeratua": false
+    }
+  ]
+}

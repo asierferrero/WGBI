@@ -19,6 +19,7 @@ import { Atleta } from '../classes/atleta';
 export class ApiService {
   private storage!: SQLiteObject;
   klubakList = new BehaviorSubject<Kluba[]>([]);
+  atletakList = new BehaviorSubject<Atleta[]>([]);
   JarduerakList = new BehaviorSubject<Jarduera[]>([]);
   private isDbReady: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
@@ -51,23 +52,38 @@ export class ApiService {
   }
   // Render data
   getData() {
-    //Lehen aldia bada, taula sortuko du datu batzuekin (sqlPorter erabiltzen du sql-tik datubasera pasatzeko). Gero konexioa badago sinkronizatu eta amaieran getKlubak() exekutatuko da.
-    this.httpClient.get(
-      'assets/dump.sql',
-      { responseType: 'text' }
-    ).subscribe(data => {
-      this.sqlPorter.importSqlToDb(this.storage, data)
-        .then(_ => {
-          if (this.networkService.getStatus()) {
-            //online gaude. Sinkronizatu
-            this.syncService.synchronize();
-          }
-          this.getKlubak();
-          this.isDbReady.next(true);
-        })
-        .catch(error => console.error(error));
-    });
-  }
+    // Verificar si ya hay datos en la base de datos
+    this.storage.executeSql('SELECT COUNT(*) as count FROM klubak', []).then((res) => {
+      const count = res.rows.item(0).count;
+      if (count === 0) {
+        // Si no hay datos, importar el dump.sql
+        this.httpClient.get('assets/dump.sql', { responseType: 'text' })
+          .subscribe(data => {
+            this.sqlPorter.importSqlToDb(this.storage, data)
+              .then(_ => {
+                console.log('Datos importados desde dump.sql');
+                if (this.networkService.getStatus()) {
+                  // Si hay conexión, sincronizar
+                  this.syncService.synchronize();
+                }
+                this.getKlubak();
+                this.getAtletak();
+                this.isDbReady.next(true);
+              })
+              .catch(error => console.error('Error al importar los datos:', error));
+          });
+      } else {
+        console.log('La base de datos ya está inicializada.');
+        if (this.networkService.getStatus()) {
+          // Si hay conexión, sincronizar
+          this.syncService.synchronize();
+        }
+        this.getKlubak();
+        this.getAtletak();
+        this.isDbReady.next(true);
+      }
+    }).catch(error => console.error('Error al verificar la base de datos:', error));
+  }  
   // Kluben zerrenda prestatu, konstruktoreetik deitzen zaio
   async getKlubak() {
     try {
@@ -99,7 +115,7 @@ export class ApiService {
   // Klub bateko jarduerak lortzeko
   async getJarduerak(id: any) {
     try {
-      const res = await this.storage.executeSql('SELECT j.id as id, j.name as name, j.distance as distance, j.moving_time as moving_time, j.elapsed_time as elapsed_time, j.type as type, j.workout_type as workout_type, j.atleta_id as atleta_id FROM jardueras as j, atletas as a WHERE j.atleta_id = a.id and a.kluba_id = ?', [id]);
+      const res = await this.storage.executeSql('SELECT j.id as id, j.name as name, j.distance as distance, j.moving_time as moving_time, j.elapsed_time as elapsed_time, j.type as type, j.workout_type as workout_type, j.atleta_id as atleta_id FROM jardueras as j INNER JOIN atletas as a ON j.atleta_id = a.id WHERE a.kluba_id = ?', [id]);
       let items: Jarduera[] = [];
       if (res.rows.length > 0) {
         for (var i = 0; i < res.rows.length; i++) {
@@ -127,8 +143,25 @@ export class ApiService {
     return this.klubakList.asObservable();
   }
 
-  fetchAtletak(): Observable<Atleta[]> {
-    return this.atletakList.asObservable();
+  async fetchAtletak(): Promise<Atleta[]> {
+    try {
+      const res = await this.storage.executeSql('SELECT * FROM atletas', []);
+      let items: Atleta[] = [];
+      console.log(res);
+      if (res.rows.length > 0) {
+        for (var i = 0; i < res.rows.length; i++) {      
+          items.push({ 
+            id: res.rows.item(i).id,
+            firstname: res.rows.item(i).firstname,  
+            lastname: res.rows.item(i).lastname,
+            kluba_id: res.rows.item(i).kluba_id,
+           });
+        }
+      }
+      return items
+    } catch (error) {
+      console.error ("errorea fetchAtletak", error);
+    }
   }
 
   //getKluba() lortutako datuak bueltatzen ditu, tab1-jarduerak orrian erabiltzen da

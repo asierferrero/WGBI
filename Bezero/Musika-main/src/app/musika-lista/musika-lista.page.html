@@ -1,0 +1,57 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="m1"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Aukeratu Musika Lista</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Aukeratu Musika Lista</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+
+  <ion-list-header>
+    <ion-label class="txt-zentratu">Zein lista hobetuko zenuke?</ion-label>
+  </ion-list-header>
+
+  <ion-select multiple="true" color="danger" >
+    <ion-item *ngFor="let musika of musikas; trackBy: trackById">
+
+      <ion-select-option name="musika.izena">{{musika.izena}}</ion-select-option>
+    </ion-item>
+  </ion-select>
+
+  <ion-list>
+
+    <ng-container *ngFor="let musika of musikas; trackBy: trackById">
+      <ion-item>
+        <ion-avatar slot="start">
+          <img src="/assets/img/ez_dakit_nola_ipini_ikonoa_orduan_nik_sortutako_argazki_bat_ipiniko_dut.png">
+        </ion-avatar>
+        <ion-label>
+          <ion-item >
+            {{ musika.izena }}, {{ musika.mota }}
+            <ion-toggle  slot="end" [(ngModel)]="musika.aukeratua" (ionChange)="toggleChanged(musika)"></ion-toggle>
+          </ion-item>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+
+  <p class="txt-zentratu">Aukeratu dituzun musika motak:</p>
+
+  <div class="txt-zentratu clr-gorria" id="musikak">
+    <span>Kanta 1</span><br>
+    <span>Kanta 2</span><br>
+    <span>Kanta 3</span><br>
+    <span>Kanta 4</span><br>
+  </div>
+
+  <span [routerLink]="['/musika-lista']" class="botoia">Entzun !</span>
+
+</ion-content>

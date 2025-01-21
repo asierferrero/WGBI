@@ -1,0 +1,41 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Brutal erreserbak</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-content>
+    <ion-list>
+
+      <ion-item>
+        <ion-label position="stacked">Izena</ion-label>
+        <ion-input [(ngModel)]="erreserba.name" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="stacked">Abizena</ion-label>
+        <ion-input [(ngModel)]="erreserba.lastname" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="stacked">Data</ion-label>
+        <ion-input [(ngModel)]="erreserba.dateR" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="stacked">Jende kopurua</ion-label>
+        <ion-input [(ngModel)]="erreserba.people" type="text"></ion-input>
+      </ion-item>
+  
+      <ion-item>
+        <ion-label position="stacked">Bazkaltzeko edo Afaltzeko</ion-label>
+        <ion-input [(ngModel)]="erreserba.lunchordinner" type="text"></ion-input>
+      </ion-item>
+  
+    </ion-list>
+  
+    <button class="button" (click)="gehituForm()">ERRESERBA ESKATU</button>
+  
+  </ion-content>
+</ion-content>

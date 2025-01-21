@@ -1,0 +1,43 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Brutal Jatetxea</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="drawer-container">
+  <!-- Drawer -->
+  <div class="drawer" [class.open]="isDrawerOpen">
+    <ion-item>
+      <h2>Gure menua</h2>
+    </ion-item>
+    <ion-content>
+      <ion-list>
+        <ion-item *ngFor="let platera of platerak">
+          <ion-avatar slot="start">
+            <img [attr.src]="platera.cover_photo_small"/>
+          </ion-avatar>
+          <ion-label>
+            <h2 class="izena">{{ platera.name }}</h2>
+            <!-- Plater bakoitzak bere showFiller izango du (false edo true) -->
+            <p class="text2" *ngIf="platera.showFiller">{{ platera.description }}</p>
+          </ion-label>
+          <ion-button (click)="toggleExtraText(platera.id)">Gehiago</ion-button>
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <img src="assets/img/biwak.png" />
+    <div class="green">
+      <p class="text1">Brutal restaurantean, eskaintza dibertigarria, zitala eta oso zaporetsua eskaintzeaz harro gaude.
+        Aukera beganoak ditugu, glutenik gabeak eta zetogenikoak, guztiek gure sukaldaritzaz gozatzeko aukera
+        izan dezaten. Zatoz bazkaltzera, sentitu ondo, eta izan zaitez zoriontsu gurekin!
+      </p>
+      <p class="text2">Jan ondo. Sentitu hobeto. Eta izan zoriontsu!</p>
+      <button class="button" (click)="toggleMenu()">MENUA ERAKUTSI</button><br>
+      <img src="assets/img/bol.png" style="width: 200px; height: 200px;" />
+    </div>
+  </div>
+</ion-content>

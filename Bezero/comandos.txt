@@ -1,0 +1,9 @@
+cd .\src\app\classes\
+ionic g class classes/kluba
+ionic g service services/api
+ionic g page klubaGehitu
+
+php artisan serve
+ionic capacitor run
+
+/data/data/io.ionic.starter/databases

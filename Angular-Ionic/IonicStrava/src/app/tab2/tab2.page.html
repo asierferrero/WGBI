@@ -1,19 +1,30 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Atletak
+      Tab 2
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-col *ngFor="let atleta of atletak">
-    <ion-item-divider color="light">
+<ion-content>
+  <ion-content class="ion-padding">
+    <ion-grid [fixed]="true">
       <ion-row>
-        <h2>{{atleta.firstname}}{{atleta.lastname}}</h2>
+        <ion-col
+          ><p><b>Izena</b></p></ion-col>
+        <ion-col
+          ><p><b>Abizena</b></p></ion-col>
+        <ion-col
+          ><p><b>Klubaren Id-a</b></p></ion-col>
       </ion-row>
-    </ion-item-divider>
-  </ion-col>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+      <ion-row *ngFor="let atleta of atletak">
+        <ion-col> {{atleta.firstname}} </ion-col>
+        <ion-col> {{atleta.lastname}} </ion-col>
+        <ion-col> {{atleta.kluba_id}} </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button color="primary" size="small" (click)="goBack()"
+      >Bueltatu</ion-button
+    >
+  </ion-content>
 </ion-content>

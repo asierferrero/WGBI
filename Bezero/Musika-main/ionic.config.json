@@ -1,0 +1,7 @@
+{
+  "name": "Azterketa",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
